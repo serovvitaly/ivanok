@@ -15,6 +15,33 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::group(['middleware' => ['web']], function () {
+
+    Route::get('login', function () {
+
+        $errors = new \Illuminate\Support\MessageBag;
+
+        return view('auth.login', ['errors' => $errors]);
+    });
+});
+
+/**
+ * Роутинг Административной части
+ */
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => 'auth',
+    'namespace' => 'Admin'
+], function () {
+
+    Route::get('/', function () {
+
+        return 'Админка';
+    });
+
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
