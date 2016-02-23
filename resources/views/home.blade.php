@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('default.layouts.grid-9-3')
 
 @section('content')
 <div class="container">

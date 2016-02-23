@@ -26,6 +26,22 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        //
+        $gate->before(function ($user, $ability) {
+            /*if ($user->isSuperAdmin()) {
+                return true;
+            }*/
+        });
+
+        $gate->define('view-posts-list', function ($user) {
+            return (bool) $user;
+        });
+
+        $gate->define('create-post', function ($user) {
+            return true;
+        });
+
+        $gate->define('update-post', function ($user, $post) {
+            return $user->id === $post->user_id;
+        });
     }
 }

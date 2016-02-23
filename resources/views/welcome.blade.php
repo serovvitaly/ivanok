@@ -1,17 +1,5 @@
-@extends('layouts.app')
+@extends('default.layouts.grid-9-3')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Welcome</div>
-
-                <div class="panel-body">
-                    Your Application's Landing Page.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@section('content-9')
+    @include('default.posts')
 @endsection

@@ -11,28 +11,61 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+/**
+ * Группа Роутов для авторизованных пользователей
+ */
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/', function(){
+        return view('welcome', [
+            'message' => 'Редактор'
+        ]);
+    });
+
+    Route::resource('/post', 'PostController');
+
+    Route::get('/post-create', 'PostController@getCreatingForm');
+
+    Route::get('/home', 'HomeController@index');
 });
 
+/*
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('login', function () {
+    Route::any('login', function () {
 
         $errors = new \Illuminate\Support\MessageBag;
 
         return view('auth.login', ['errors' => $errors]);
     });
-});
 
+    Route::any('register', function () {
+
+        $errors = new \Illuminate\Support\MessageBag;
+
+        return view('auth.register', ['errors' => $errors]);
+    });
+
+    Route::any('password/reset', function () {
+
+        $errors = new \Illuminate\Support\MessageBag;
+
+        return view('auth.passwords.reset', [
+            'errors' => $errors,
+            'token' => $errors,
+        ]);
+    });
+});
+*/
 /**
  * Роутинг Административной части
  */
 Route::group([
     'prefix' => 'admin',
     'middleware' => 'auth',
-    'namespace' => 'Admin'
+    //'namespace' => 'Admin'
 ], function () {
 
     Route::get('/', function () {
@@ -53,6 +86,23 @@ Route::group([
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => 'web'], function () {
+
+    Route::get('/{post_url}',function($post_url){
+
+        $post = \App\Models\PostModel::where('url', '=', '/' . $post_url)->first();
+
+        if ($post) {
+
+            DB::beginTransaction();
+            $post->counter++;
+            $post->save();
+            DB::commit();
+
+            return view('default.post-full', ['post' => $post]);
+        }
+
+        abort(404);
+
+    })->where('post_url', '.*');
 });
