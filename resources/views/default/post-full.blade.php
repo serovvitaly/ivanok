@@ -1,7 +1,11 @@
 @extends('default.layouts.grid-9-3')
 
 @section('content-9')
-    <h1 class="title text-center">{{ $post->title }}</h1>
+<div itemscope itemtype="http://schema.org/BlogPosting">
+    @foreach($post->rubrics()->get() as $rubric)
+        <meta itemprop="genre" content="{{ $rubric->title }}">
+    @endforeach
+    <h1 itemprop="headline" class="title text-center">{{ $post->title }}</h1>
 
     <div class="row small" style="color: grey; margin-bottom: 20px;">
         <div class="col-lg-12">
@@ -9,9 +13,11 @@
         </div>
     </div>
 
-    <article class="content">
+    <article class="content" itemprop="text" itemprop="articleBody">
         {!! $post->getContent() !!}
     </article>
+</div>
+
     <hr>
     <div>
         <h3 class="lobster">Автор</h3>
