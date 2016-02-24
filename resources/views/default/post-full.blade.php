@@ -2,7 +2,13 @@
 
 @section('content-9')
     <h1 class="title text-center">{{ $post->title }}</h1>
-    <p><em>{{ $post->note }}</em></p>
+
+    <div class="row small" style="color: grey; margin-bottom: 20px;">
+        <div class="col-lg-12">
+            @include('default.widgets.stats', ['post' => $post])
+        </div>
+    </div>
+
     <article class="content">
         {!! $post->getContent() !!}
     </article>

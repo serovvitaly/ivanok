@@ -23,4 +23,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    public function getFullName()
+    {
+        return $this->name . ' @ ' . $this->login;
+    }
+
+    public function isSuperAdmin()
+    {
+        return (bool) $this->is_super_admin;
+    }
 }

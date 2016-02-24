@@ -11,25 +11,6 @@
 |
 */
 
-/**
- * Группа Роутов для авторизованных пользователей
- */
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
-
-    Route::get('/', function(){
-        return view('welcome', [
-            'message' => 'Редактор'
-        ]);
-    });
-
-    Route::resource('/post', 'PostController');
-
-    Route::get('/post-create', 'PostController@getCreatingForm');
-
-    Route::get('/home', 'HomeController@index');
-});
-
 /*
 
 Route::group(['middleware' => ['web']], function () {
@@ -88,21 +69,64 @@ Route::group([
 
 Route::group(['middleware' => 'web'], function () {
 
+    Route::auth();
+
+    Route::get('/', function(){
+        return view('welcome', [
+            'message' => 'Редактор'
+        ]);
+    });
+
+    Route::resource('/post', 'PostController');
+
+    Route::get('/post/{post_id}/set-int', 'PostController@setInt');
+    Route::get('/post/{post_id}/publish', 'PostController@publish');
+    Route::get('/post/{post_id}/unpublish', 'PostController@unpublish');
+
+    Route::get('/home', 'HomeController@index');
+
+    /**
+     * Вывод страницы Автора
+     */
+    Route::get('/author/{author_login}',function($author_login){
+
+        $author = \App\User::where('login', '=', $author_login)->first();
+
+        if ($author) {
+
+            return view('default.author', ['author' => $author]);
+        }
+
+        abort(404);
+    });
+
+    /**
+     * Вывод страницы Поста
+     */
     Route::get('/{post_url}',function($post_url){
 
         $post = \App\Models\PostModel::where('url', '=', '/' . $post_url)->first();
 
-        if ($post) {
+        if ( ! $post ) {
+            abort(404);
+        }
+
+        $auth_user = \Auth::user();
+
+        if ( ! $post->isPublished() and Gate::denies('update-post', $post) ) {
+
+            abort(404);
+        }
+
+        if (!$auth_user or $auth_user->id != $post->user_id) {
 
             DB::beginTransaction();
             $post->counter++;
             $post->save();
             DB::commit();
-
-            return view('default.post-full', ['post' => $post]);
         }
 
-        abort(404);
+        return view('default.post-full', ['post' => $post]);
 
     })->where('post_url', '.*');
 });

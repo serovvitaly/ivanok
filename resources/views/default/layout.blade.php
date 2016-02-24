@@ -35,6 +35,10 @@
         .content p {
             margin: 0 0 14px;
         }
+        .liner {
+            display: inline-block;
+            padding-right: 16px;
+        }
     </style>
 </head>
 <body id="app-layout">

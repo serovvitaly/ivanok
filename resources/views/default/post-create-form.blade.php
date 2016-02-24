@@ -63,31 +63,21 @@
             </div>
             <hr>
             <strong>Рубрика</strong>
+            @foreach(\App\Models\RubricModel::all() as $rubric)
             <div class="checkbox">
                 <label>
-                    <input type="radio" value="" name="post-category">
-                    Здоровье
+                    <input type="checkbox" class="post-rubric" value="{{ $rubric->id }}" name="post-rubric-{{ $rubric->id }}">
+                    {{ $rubric->title }}
                 </label>
             </div>
-            <div class="checkbox">
-                <label>
-                    <input type="radio" value="" name="post-category">
-                    Воспитание
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="radio" value="" name="post-category">
-                    Развитие
-                </label>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
 <script src="/ckeditor/ckeditor.js"></script>
 <script>
 
-    CKEDITOR.replace('post-content');
+    CKEDITOR.inline('post-content');
 
     var _TOKEN = '{{ csrf_token() }}';
     function getToken(){
@@ -107,6 +97,11 @@
     }
     function savePost(postId){
 
+        var rubrics = [];
+        $('.post-rubric:checked').each(function(index, item){
+            rubrics.push($(item).val());
+        });
+
         $.ajax({
             url: '/post' + (postId ? ('/' + postId) : ''),
             type: postId ? 'PUT' : 'POST',
@@ -115,7 +110,8 @@
                 title: $('#post-title').val(),
                 keywords: $('#post-keywords').val(),
                 description: $('#post-description').val(),
-                content: CKEDITOR.instances['post-content'].getData()
+                content: CKEDITOR.instances['post-content'].getData(),
+                rubrics: rubrics
             },
             success: function(response){
                 window.location = '/post';

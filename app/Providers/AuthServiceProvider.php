@@ -41,7 +41,21 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         $gate->define('update-post', function ($user, $post) {
-            return $user->id === $post->user_id;
+
+            if ($user->isSuperAdmin()) {
+
+                return true;
+            }
+
+            return $user->id == $post->user_id;
+        });
+
+        $gate->define('publication-post', function ($user, $post) {
+
+            if ($user->isSuperAdmin()) {
+
+                return true;
+            }
         });
     }
 }

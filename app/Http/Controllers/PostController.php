@@ -12,15 +12,6 @@ use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
-    public function getCreatingForm()
-    {
-        if (Gate::denies('create-post')) {
-            abort(403, 'Нет прав для создания документа');
-        }
-
-        return view('default.post-create-form');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -44,6 +35,10 @@ class PostController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('create-post')) {
+            abort(403, 'Нет прав для создания документа');
+        }
+
         return view('default.post-create-form');
     }
 
@@ -62,7 +57,9 @@ class PostController extends Controller
         $post->description = $request->get('description');
         $post->content = $request->get('content');
         $post->user_id = \Auth::user()->id;
-        //$post->url = Transliterator::transliterate($post->title);
+        //$post->url =  str_slug($post->title);
+
+        $post->rubrics()->sync($request->get('rubrics'));
 
         $post->save();
 
@@ -90,8 +87,14 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $post = \App\Models\PostModel::findOrFail($id);
+
+        if (Gate::denies('update-post', $post)) {
+            abort(403, 'Нет прав для редактирования документа');
+        }
+
         return view('default.post-create-form', [
-            'post' => \App\Models\PostModel::findOrFail($id)
+            'post' => $post
         ]);
     }
 
@@ -106,11 +109,17 @@ class PostController extends Controller
     {
         $post = PostModel::findOrFail($id);
 
+        if (Gate::denies('update-post', $post)) {
+            abort(403, 'Нет прав для редактирования документа');
+        }
+
         $post->title = $request->get('title');
         $post->keywords = $request->get('keywords');
         $post->description = $request->get('description');
         $post->content = $request->get('content');
-        //$post->url = Transliterator::transliterate($post->title);
+        //$post->url =  str_slug($post->title);
+
+        $post->rubrics()->sync($request->get('rubrics'));
 
         $post->save();
 
@@ -128,5 +137,80 @@ class PostController extends Controller
     public function destroy($id)
     {
         return 'destroy';
+    }
+
+    /**
+     * @param $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function setInt($id)
+    {
+        $post = PostModel::findOrFail($id);
+
+        if (Gate::denies('update-post', $post)) {
+            abort(403, 'Нет прав для едактирования документа');
+        }
+
+        $input = \Request::all();
+
+        if (empty($input)) {
+
+            return redirect()->back();
+        }
+
+        $allow_fields = ['is_actual', 'is_published'];
+
+        foreach ($input as $field_name => $val) {
+
+            if ( ! in_array($field_name, $allow_fields) ) {
+
+                continue;
+            }
+
+            $post->$field_name = (int) $val;
+        }
+
+        $post->save();
+
+        return redirect()->back();
+    }
+
+    /**
+     * Публикация
+     * @param $id
+     * @return string
+     */
+    public function publish($id)
+    {
+        $post = PostModel::findOrFail($id);
+
+        if (Gate::denies('publication-post', $post)) {
+            abort(403, 'Нет прав для публикации документа');
+        }
+
+        $post->is_published = 1;
+        $post->save();
+
+        return redirect()->back();
+    }
+
+    /**
+     * Отменить публикацию
+     * @param $id
+     * @return string
+     */
+    public function unpublish($id)
+    {
+        $post = PostModel::findOrFail($id);
+
+        if (Gate::denies('publication-post', $post)) {
+            abort(403, 'Нет прав для отмены публикации документа');
+        }
+
+        $post->is_published = 0;
+        $post->save();
+
+        return redirect()->back();
     }
 }

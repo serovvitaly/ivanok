@@ -15,6 +15,14 @@ class PostHelper
 
     public static function getPosts()
     {
-        return \App\Models\PostModel::where('is_actual', '=', 1)->paginate();
+        $auth_user = \Auth::user();
+
+        if ($auth_user and $auth_user->isSuperAdmin()) {
+
+            //return \App\Models\PostModel::orderBy('created_at', 'DESC')->paginate();
+            return \App\Models\PostModel::where('is_published', '=', 1)->orderBy('counter', 'DESC')->paginate();
+        }
+
+        return \App\Models\PostModel::where('is_actual', '=', 1)->where('is_published', '=', '1')->orderBy('counter', 'DESC')->paginate();
     }
 }
