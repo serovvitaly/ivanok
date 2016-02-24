@@ -5,17 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="keywords" content="@yield('keywords')">
+    <meta name="description" content="@yield('description')">
+
     <title>Laravel</title>
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Molle:400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
+        .logo {
+            font-size: 30px;
+            font-family: 'Molle', cursive;
+            color: #337ab7;
+        }
+        body {
+            /*background: #FBFBFB fixed;*/
+        }
+        #main-container {
+            background: white;
+            /*-webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, .15);
+                    box-shadow: 0px 0px 12px rgba(0, 0, 0, .15);*/
+        }
         .lobster {
             font-family: 'Lobster', cursive;
         }
@@ -39,31 +56,18 @@
             display: inline-block;
             padding-right: 16px;
         }
+        .title a {
+            color: #131313;
+        }
     </style>
 </head>
-<body id="app-layout">
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                Laravel
-            </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+<body>
+<div id="main-container" class="container">
+    <div class="row">
+        <div class="collapse navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('/home') }}">Home</a></li>
+                <li><a href="{{ url('/') }}" class="logo">Ivanok.ru</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -73,12 +77,12 @@
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>
                 @else
-                    <li>
+                    {{--<li>
                         <a href="/post">Мои посты</a>
                     </li>
                     <li>
                         <a href="/post/create" class="btn-danger">Создать пост</a>
-                    </li>
+                    </li> --}}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -92,13 +96,14 @@
             </ul>
         </div>
     </div>
-</nav>
-
 @yield('content')
-
-        <!-- JavaScripts -->
+</div>
+<!-- JavaScripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+@if( ! \Auth::check() )
+    @include('analytics')
+@endif
 </body>
 </html>

@@ -26,6 +26,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
+        $gate->define('analytics', function ($user) {
+
+            if ( ! $user->isSuperAdmin() ) {
+                return true;
+            }
+            
+            return false;
+        });
+
         $gate->before(function ($user, $ability) {
             /*if ($user->isSuperAdmin()) {
                 return true;
@@ -57,5 +66,7 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
+
+
     }
 }

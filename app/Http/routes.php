@@ -118,7 +118,7 @@ Route::group(['middleware' => 'web'], function () {
             abort(404);
         }
 
-        if (!$auth_user or $auth_user->id != $post->user_id) {
+        if (!$auth_user or Gate::denies('update-post', $post)) {
 
             DB::beginTransaction();
             $post->counter++;
