@@ -36,6 +36,7 @@
         <a name="comments"></a>
         <h3 class="lobster">Комментарии</h3>
         <hr class="no-border">
+        {{--
         <div id="comments-list">
             <textarea id="comment-text" class="form-control" rows="3" placeholder="...введите такст, и нажмите - Отправить"></textarea>
             <div style="height: 10px;"></div>
@@ -60,5 +61,6 @@
             </script>
 
         </div>
+        --}}
     </div>
 @endsection

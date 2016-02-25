@@ -8,10 +8,10 @@
     <img src="http://ivanok.ru/img/ful64z7uyiY.jpg" alt="Ирина Гаврилова" class="img-circle media-object" style="width: 16px; display: inline-block">
     <strong><a href="/author/{{ $post->author->getLogin() }}"> {{ $post->author->getLogin() }}</a></strong>
 </div>
-<div class="liner">
+{{-- <div class="liner">
     <span class="glyphicon glyphicon-comment"></span>
     <a href="{{ $post->url }}#comments">Оставить комментарий</a>
-</div>
+</div> --}}
 <div class="liner">
     <span class="glyphicon glyphicon-time"></span>
     <span>{{ $post->getHumanDate() }}</span>

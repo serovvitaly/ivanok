@@ -24,7 +24,20 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
+        /**
+         * Регистрация посещений
+         */
+        $user_id = null;
+        if ($auth_user = \Auth::user()) {
+            $user_id = $auth_user->id;
+        }
+        
+        \DB::table('visits')->insert([
+            'user_key' => \App\Helpers\AuthHelper::getUserKey(),
+            'request_url' => \Request::fullUrl(),
+            'remote_addr' => \Request::server('REMOTE_ADDR'),
+            'user_id' => $user_id,
+        ]);
 
         parent::boot($router);
     }
