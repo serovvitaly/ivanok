@@ -39,7 +39,7 @@ class PostController extends Controller
             abort(403, 'Нет прав для создания документа');
         }
 
-        return view('default.post-create-form');
+        return view('default.NEW_post-create-form');
     }
 
     /**
@@ -76,7 +76,28 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return 'show';
+        $post = \App\Models\PostModel::find($id);
+
+        if ( ! $post ) {
+            abort(404);
+        }
+
+        $auth_user = \Auth::user();
+
+        if ( ! $post->isPublished() and Gate::denies('update-post', $post) ) {
+
+            abort(404);
+        }
+
+        if (!$auth_user or Gate::denies('update-post', $post)) {
+
+            DB::beginTransaction();
+            $post->counter++;
+            $post->save();
+            DB::commit();
+        }
+
+        return view('default.post-full', ['post' => $post]);
     }
 
     /**

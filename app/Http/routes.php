@@ -71,6 +71,15 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
 
+    /**
+     * Временные URL для статей
+     * @todo Со временем нужно перенести в БД
+     */
+    Route::get('/post/1900', function () {
+
+        return view('default.post.post-zootopia');
+    });
+
     Route::get('/', function(){
         return view('welcome', [
             'message' => 'Редактор'

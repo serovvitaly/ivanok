@@ -34,11 +34,24 @@
             <div id="post-editor">
                 <div class="form-group">
                     <label for="post-title">Заголовок</label>
-                    <input class="form-control" id="post-title" placeholder="введите заголовок статьи...">
+                    <input class="form-control" id="post-title" placeholder="введите заголовок статьи..." value="{{ $post->title or '' }}">
                 </div>
                 <div class="form-group">
                     <label for="post-note">Аннотация</label>
                     <textarea class="form-control" id="post-note"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="post-keywords">Meta: keywords</label>
+                    <input class="form-control" id="post-keywords" placeholder="введите заголовок статьи..." value="{{ $post->keywords or '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="post-description">Meta: description</label>
+                    <textarea class="form-control" id="post-description">{{ $post->description or '' }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="post-content">Контент</label>
+                    <textarea class="form-control" id="post-content">{{ $post->content or '' }}</textarea>
                 </div>
                 <hr>
                 <div id="post-content-blocks"></div>
