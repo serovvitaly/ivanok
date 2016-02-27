@@ -7,7 +7,7 @@
     </div>
 
     <a href="{{ $post->getUrl() }}">
-        <img alt="" src="/img/zootopia-0.jpg" style="width: 100%">
+        <img alt="" src="/img/zootopia-0.jpg" style="width: 100%" onclick="yaCounter6800620.reachGoal('_WIDGET_IMAGE'); return true;">
     </a>
 
     <div class="row small" style="color: grey">
@@ -17,10 +17,15 @@
     </div>
 
     <div class="head3 title text-center">
-        <a href="{{ $post->getUrl() }}">{{ $post->title }}</a>
+        <a href="{{ $post->getUrl() }}">
+            <span onclick="yaCounter6800620.reachGoal('_WIDGET_TITLE'); return true;">{{ $post->title }}</span>
+        </a>
     </div>
     <p class="text-center small">
-        {{ $post->description }}, <a class="strong" href="{{ $post->getUrl() }}">читайте далее...</a>
+        {{ $post->description }},
+        <a class="strong" href="{{ $post->getUrl() }}">
+            <span onclick="yaCounter6800620.reachGoal('_WIDGET_MORE'); return true;">читайте далее...</span>
+        </a>
     </p>
 
     <div>
