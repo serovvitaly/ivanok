@@ -23,10 +23,11 @@
         <h3 class="lobster">Автор</h3>
         <div class="media">
             <div class="media-left media-middle">
-                <img src="http://ivanok.ru/img/ful64z7uyiY.jpg" alt="Ирина Гаврилова" class="img-circle media-object" style="width: 60px;">
+                <img src="{{ $post->author->getImageUrl() }}" alt="{{ $post->author->name }}" class="img-circle media-object" style="width: 60px;">
             </div>
             <div class="media-body">
-                <h4 class="media-heading">Ирина Гаврилова</h4>
+                <h4 class="media-heading">{{ $post->author->name }}</h4>
+                <div class="small strong"><a href="/author/{{ $post->author->getLogin() }}">{{ $post->author->getLogin() }}</a></div>
                 Руководитель веб-студии. Член Российского союза писателей.
             </div>
         </div>

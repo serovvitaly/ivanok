@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-lg-6 text-right">
-            <img src="http://ivanok.ru/img/ful64z7uyiY.jpg" alt="Ирина Гаврилова" class="img-circle media-object" style="width: 140px; display: inline-block;">
+            <img src="{{ $author->getImageUrl() }}" alt="{{ $author->getFullName() }}" class="img-circle media-object" style="width: 140px; display: inline-block;">
         </div>
         <div class="col-lg-6">
             <h1 class="title">{{ $author->getFullName() }}</h1>

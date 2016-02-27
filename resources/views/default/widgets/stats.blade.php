@@ -4,8 +4,8 @@
 <div class="liner">
     <span class="glyphicon glyphicon-heart"></span> {{ $post->likes | 0 }}
 </div>
-<div class="liner">
-    <img src="http://ivanok.ru/img/ful64z7uyiY.jpg" alt="Ирина Гаврилова" class="img-circle media-object" style="width: 16px; display: inline-block">
+<div class="liner" title="{{ $post->author->name }}">
+    <img src="{{ $post->author->getImageUrl() }}" alt="{{ $post->author->name }}" class="img-circle media-object" style="width: 16px; display: inline-block">
     <strong><a href="/author/{{ $post->author->getLogin() }}"> {{ $post->author->getLogin() }}</a></strong>
 </div>
 {{-- <div class="liner">

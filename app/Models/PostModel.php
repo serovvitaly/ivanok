@@ -25,7 +25,7 @@ class PostModel extends Model
 
     public function getHumanDate()
     {
-        $date = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at);
+        $date = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at, config('app.timezone'));
         $date->setLocale('ru');
         return $date->diffForHumans();
     }
@@ -43,5 +43,10 @@ class PostModel extends Model
     public function isPublished()
     {
         return (bool) $this->is_published;
+    }
+
+    public function getUrl()
+    {
+        return '/post/' . $this->id;
     }
 }

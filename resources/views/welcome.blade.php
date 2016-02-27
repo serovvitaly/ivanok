@@ -2,7 +2,7 @@
 
 @section('content-3')
     @can('developer')
-        @include('default.widgets.posts-prime')
+        @include('default.widgets.posts-prime', ['post' => \App\Models\PostModel::find(1900)])
     @endcan
 @endsection
 

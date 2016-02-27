@@ -89,15 +89,21 @@ class PostController extends Controller
             abort(404);
         }
 
-        if (!$auth_user or Gate::denies('update-post', $post)) {
-
-            DB::beginTransaction();
+        if ( ! $auth_user or Gate::denies('update-post', $post) ) {
+            //DB::beginTransaction();
             $post->counter++;
             $post->save();
-            DB::commit();
+            //DB::commit();
         }
 
-        return view('default.post-full', ['post' => $post]);
+        $template = trim($post->template);
+
+        if ( empty($template) or ! view()->exists($template) ) {
+
+            $template = 'default.post-full';
+        }
+
+        return view($template, ['post' => $post]);
     }
 
     /**

@@ -2,91 +2,98 @@
 
 @section('title', 'Зверополис - зрелищный мультфильм для семейного просмотра от Disney')
 
-@section('title', '«Зверополис» - это не просто очередной веселый детский мультфильм производства компании Disney. Мультипликационный фильм Zootopia обещает стать одним из самых грандиозных проектов известной корпорации, и на это есть немало причин.')
+@section('description', '«Зверополис» - это не просто очередной веселый детский мультфильм производства компании Disney. Мультипликационный фильм Zootopia обещает стать одним из самых грандиозных проектов известной корпорации, и на это есть немало причин.')
 
 @section('content-3')
-    <table>
-        <tr>
-            <td>8,1</td>
-            <td><a target="_blank" href="http://www.imdb.com/title/tt2948356/?ref_=nv_sr_3">IMDb</a></td>
-        </tr>
-        <tr>
-            <td>8,8</td>
-            <td><a href="http://www.kinopoisk.ru/film/775276/">КиноПоиск</a></td>
-        </tr>
-        <tr>
-            <td>Премьера</td>
-            <td>3 марта 2016</td>
-        </tr>
-        <tr>
-            <td>Режиссёр</td>
-            <td>Байрон Ховард, Рич Мур, Джаред Буш</td>
-        </tr>
-        <tr>
-            <td>Время</td>
-            <td>108 мин.</td>
-        </tr>
-        <tr>
-            <td>Страна</td>
-            <td>США</td>
-        </tr>
-        <tr>
-            <td>Год производства</td>
-            <td>2016</td>
-        </tr>
-        <tr>
-            <td>Оригинальное название</td>
-            <td>Zootopia</td>
-        </tr>
-    </table>
+    <div>
+        <div class="head3 title">НЕМНОГО ПОДРОБНОСТЕЙ</div>
+        <table class="table small table-condensed">
+            <tr>
+                <td>8,1</td>
+                <td>
+                    <a target="_blank" href="http://www.imdb.com/title/tt2948356/?ref_=nv_sr_3">
+                        <span onclick="yaCounter6800620.reachGoal('_PART_BTN_IMDB'); return true;">IMDb</span>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>8,8</td>
+                <td>
+                    <a target="_blank" href="http://www.kinopoisk.ru/film/775276/">
+                        <span onclick="yaCounter6800620.reachGoal('_PART_BTN_KINOP'); return true;">КиноПоиск</span>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>Премьера</td>
+                <td>3 марта 2016</td>
+            </tr>
+            <tr>
+                <td>Режиссёр</td>
+                <td>Байрон Ховард, Рич Мур, Джаред Буш</td>
+            </tr>
+            <tr>
+                <td>Время</td>
+                <td>108 мин.</td>
+            </tr>
+            <tr>
+                <td>Страна</td>
+                <td>США</td>
+            </tr>
+            <tr>
+                <td>Год производства</td>
+                <td>2016</td>
+            </tr>
+            <tr>
+                <td>Оригинальное название</td>
+                <td>Zootopia</td>
+            </tr>
+        </table>
 
-    <p>
-        <button class="btn btn-default">Я пойду!</button>
-    </p>
-
+        {{--
+        <button type="button" class="btn btn-danger btn-block btn-lg font-condensed"><strong>Я пойду!</strong> уже идет 247</button>
+        --}}
+    </div>
+    <hr>
+    <div class="head3 title">В кинотеатрах с 27 февраля:</div>
+    <div class="list-group title">
+        <a target="_blank" href="afisha.yandex.ru/events/557ec2c6cc1c7206dae6d306" class="list-group-item">
+            <p class="list-group-item-text" onclick="yaCounter6800620.reachGoal('_PART_BTN_YA'); return true;">Яндекс.Афиша «Зверополис»</p>
+        </a>
+        <a target="_blank" href="https://kassa.rambler.ru/movie/63402" class="list-group-item">
+            <p class="list-group-item-text" onclick="yaCounter6800620.reachGoal('_PART_BTN_RK'); return true;">Рамблер-Касса «Зверополис»</p>
+        </a>
+        <a target="_blank" href="https://afisha.mail.ru/cinema/movies/877169_zootopiya/" class="list-group-item">
+            <p class="list-group-item-text" onclick="yaCounter6800620.reachGoal('_PART_BTN_AM'); return true;">Афиша Mail.Ru «Зверополис»</p>
+        </a>
+    </div>
+    <hr>
+    <div class="title">Поделитесь с друзьями:</div>
     <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,twitter" data-counter="" data-size="m"></div>
-
-    <strong>В кинотеатрах с 27 февраля:</strong>
-
-    <p><a target="_blank" href="afisha.yandex.ru/events/557ec2c6cc1c7206dae6d306">Яндекс.Афиша</a></p>
-    <p><a target="_blank" href="https://kassa.rambler.ru/movie/63402">Рамблер-Касса</a></p>
-    <p><a target="_blank" href="https://afisha.mail.ru/cinema/movies/877169_zootopiya/">Афиша Mail.Ru</a></p>
-
 @endsection
 
 @section('content-9')
     <div itemscope itemtype="http://schema.org/BlogPosting">
+        <meta itemprop="genre" content="Zootopia">
+        <meta itemprop="genre" content="Зверополис">
         <meta itemprop="genre" content="Мультфильмы">
         <meta itemprop="genre" content="Для семейного просмотра">
         <meta itemprop="genre" content="Комедии">
         <meta itemprop="genre" content="Для детей">
         <h1 itemprop="headline" class="title text-center row">
             <span class="col-lg-6 text-right" style="font-size: 60px; line-height: 55px;">ЗВЕРОПОЛИС</span>
-            <span class="col-lg-6 text-left" style="font-weight: normal; font-size: 24px;"> - зрелищный мультфильм для<br>семейного просмотра от Disney</span>
+            <span class="col-lg-6 text-left" style="color: #8EB9D4; font-size: 24px;"> - зрелищный мультфильм для<br>семейного просмотра от Disney</span>
         </h1>
 
         <div class="row small" style="color: grey; margin-bottom: 20px;">
             <div class="col-lg-12">
-                <div class="liner">
-                    <span class="glyphicon glyphicon-eye-open"></span> 0
-                </div>
-                <div class="liner">
-                    <span class="glyphicon glyphicon-heart"></span> 0
-                </div>
-                <div class="liner">
-                    <img src="http://ivanok.ru/img/ful64z7uyiY.jpg" alt="Ирина Гаврилова" class="img-circle media-object" style="width: 16px; display: inline-block">
-                    <strong><a href="/author/irgav"> @irgav</a></strong>
-                </div>
-                <div class="liner">
-                    <span class="glyphicon glyphicon-comment"></span>
-                    <a href="#comments">Оставить комментарий</a>
-                </div>
+                @include('default.widgets.stats', ['post' => $post])
             </div>
         </div>
 
         <article class="content" itemprop="text" itemprop="articleBody">
 
-            <p class="post-description">«Зверополис» - это не просто очередной веселый детский мультфильм производства компании Disney. Мультипликационный фильм Zootopia обещает стать одним из самых грандиозных проектов известной корпорации, и на это есть немало причин.</p>
+            <p itemprop="description" class="post-description">«Зверополис» - это не просто очередной веселый детский мультфильм производства компании Disney. Мультипликационный фильм Zootopia обещает стать одним из самых грандиозных проектов известной корпорации, и на это есть немало причин.</p>
 
             <p>Компания Disney уже 80 лет создает качественные, интересные, оригинальные мультипликационные фильмы, которые любят и смотрят дети во всем мире. Но на этот раз ее продукт стал совершенно особенным – все дело в том, что семейного мультфильма наподобие «Зверополиса» (Zootopia) пока что не было ни у Disney, ни у другой кинокомпании, он стал настоящим прорывом. Мы, зрители, ожидали от корпорации очередную красивую картину в «фирменном стиле» - например, новый мюзикл с прекрасной принцессой в главной роли, интересный оскароносный сюжет вроде Big Hero или явно недооцененный, но очень добрый мультик наподобие «Ральфа». Но компании Disney удалось нас удивить – она создала совершенно особенный, а главное неожиданный продукт, который имеет все шансы стать самым грандиозным за годы ее работы!</p>
 
@@ -183,18 +190,15 @@
 
     <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+
+    <div class="title head3">Поделитесь с друзьями:</div>
     <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,twitter" data-counter="" data-size="m"></div>
 
     <hr>
 
-    @include('default.widgets.vk-comments')
-    <hr>
-    
-    <div style="margin: 50px 0;">
+    <div style="margin: 30px 0;">
         <a name="comments"></a>
-        <h3 class="lobster">Комментарии</h3>
-        <hr class="no-border">
-        {{--
+        <div class="head2 title">Комментарии</div>
         <div id="comments-list">
             <textarea id="comment-text" class="form-control" rows="3" placeholder="...введите такст, и нажмите - Отправить"></textarea>
             <div style="height: 10px;"></div>
@@ -219,7 +223,7 @@
             </script>
 
         </div>
-        --}}
+
     </div>
 
     <script src="/lib/lightslider/src/js/lightslider.js"></script>

@@ -38,4 +38,9 @@ class User extends Authenticatable
     {
         return (bool) $this->is_super_admin;
     }
+
+    public function getImageUrl()
+    {
+        return $this->image;
+    }
 }

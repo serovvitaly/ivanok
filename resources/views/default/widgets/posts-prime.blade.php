@@ -6,8 +6,8 @@
         Премьера сезона,<br>не пропустите
     </div>
 
-    <a href="/post/1900">
-        <img alt="" src="http://www.kinonews.ru/insimgs/2016/poster/poster59487_1.jpg" style="width: 100%">
+    <a href="{{ $post->getUrl() }}">
+        <img alt="" src="/img/zootopia-0.jpg" style="width: 100%">
     </a>
 
     <div class="small color-grey text-center" style="margin: 5px 0 5px;">
@@ -22,25 +22,22 @@
             <strong><a href="/author/"> irgav</a></strong>
         </div>
         <div class="liner">
-            <a href="/post/1900#comments" type="Оставить комментарий">
+            <a href="{{ $post->getUrl() }}#comments" type="Оставить комментарий">
                 <span class="glyphicon glyphicon-comment"></span>
                 0
             </a>
         </div>
         <div class="liner">
             <span class="glyphicon glyphicon-time"></span>
-            <span>xfc yfpf</span>
+            <span>{{ $post->getHumanDate() }}</span>
         </div>
     </div>
 
     <div class="head3 title text-center">
-        <a href="/post/1900">
-            «Зверополис» - зрелищный мультфильм для семейного просмотра от Disney
-        </a>
+        <a href="{{ $post->getUrl() }}">{{ $post->title }}</a>
     </div>
     <p class="text-center small">
-        «Зверополис» - это не просто очередной веселый детский мультфильм производства компании Disney. Мультипликационный фильм Zootopia обещает стать одним из самых грандиозных проектов года, и на это есть свои причины,
-        <a class="strong" href="/post/1900">читайте далее...</a>
+        {{ $post->description }}, <a class="strong" href="{{ $post->getUrl() }}">читайте далее...</a>
     </p>
 
     <div>

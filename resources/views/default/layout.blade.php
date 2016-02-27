@@ -40,9 +40,15 @@
         .lobster {
             font-family: 'Lobster', cursive;
         }
+        .font-condensed {
+            font-family: 'Open Sans Condensed',sans-serif;
+        }
         .title {
             font-family: 'Open Sans Condensed',sans-serif;
             font-weight: bold;
+        }
+        .title a {
+            color: #131313;
         }
         .strong {
             font-weight: bold;
@@ -65,9 +71,6 @@
         .liner {
             display: inline-block;
             padding-right: 16px;
-        }
-        .title a {
-            color: #131313;
         }
         .head2 {
             font-size: 20px;
