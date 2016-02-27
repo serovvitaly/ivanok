@@ -57,9 +57,8 @@ class PostController extends Controller
         $post->description = $request->get('description');
         $post->content = $request->get('content');
         $post->user_id = \Auth::user()->id;
-        //$post->url =  str_slug($post->title);
 
-        $post->rubrics()->sync($request->get('rubrics'));
+        $post->rubrics()->sync($request->get('rubrics', []));
 
         $post->save();
 
@@ -144,9 +143,8 @@ class PostController extends Controller
         $post->keywords = $request->get('keywords');
         $post->description = $request->get('description');
         $post->content = $request->get('content');
-        //$post->url =  str_slug($post->title);
 
-        $post->rubrics()->sync($request->get('rubrics'));
+        $post->rubrics()->sync($request->get('rubrics', []));
 
         $post->save();
 

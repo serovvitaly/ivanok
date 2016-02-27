@@ -12,7 +12,7 @@
 
     <div class="row small" style="color: grey">
         <div class="col-lg-12">
-            @include('default.widgets.stats', ['post' => $post, 'edit' => 0])
+            @include('default.widgets.stats', ['post' => $post, 'edit' => 0, 'rubrics' => 0])
         </div>
     </div>
 

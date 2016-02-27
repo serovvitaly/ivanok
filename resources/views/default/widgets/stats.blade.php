@@ -16,7 +16,7 @@
     <span class="glyphicon glyphicon-time"></span>
     <span>{{ $post->getHumanDate() }}</span>
 </div>
-@if( Gate::allows('update-post', $post) )
+@if( Gate::allows('update-post', $post) and ( ! isset($edit) or $edit != 0 ) )
 <div class="liner">
     <div class="btn-group btn-group-xs">
         <a href="/post/{{ $post->id }}/edit" class="btn btn-warning btn-xs">
@@ -51,6 +51,7 @@
 </div>
 @endif
 
+@if( ! isset($rubrics) or $rubrics != 0 )
 <div class="row">
     <div class="col-lg-12">
         @foreach($post->rubrics()->get() as $rubric)
@@ -58,3 +59,4 @@
         @endforeach
     </div>
 </div>
+@endif
