@@ -15,7 +15,7 @@ class PostModel extends Model
 
     public function rubrics()
     {
-        return $this->belongsToMany('\App\Models\RubricModel', 'post_rubric', 'rubric_id', 'post_id');
+        return $this->belongsToMany('\App\Models\RubricModel', 'post_rubric', 'post_id', 'rubric_id');
     }
 
     public function getContent()
