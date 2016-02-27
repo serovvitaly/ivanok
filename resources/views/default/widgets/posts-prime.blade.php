@@ -1,7 +1,5 @@
 <div>
-
-
-
+    
     <div class="box box-info">
         Премьера сезона,<br>не пропустите
     </div>
