@@ -11,6 +11,54 @@
 |
 */
 
+Route::get('/redirect/{base64url}', function($base64url){
+
+    DB::table('redirect_log')->insert(
+        [
+            'url' => base64_decode($base64url),
+            //'user_id' => 0,
+            'user_key' => \App\Helpers\AuthHelper::getUserKey(),
+            'http_referer' => Request::server('HTTP_REFERER')
+        ]
+    );
+});
+
+Route::get('/img/{width}x{height}/{img_file_name}', function($width, $height, $img_file_name){
+
+    $img_dir = public_path('img/');
+
+    $origin_dir = public_path('img/origin/');
+
+    $origin_file_path = $origin_dir . $img_file_name;
+
+    /**
+     * @var \Intervention\Image\Image $img
+     */
+    if ( ! file_exists($origin_file_path) ) {
+
+        $img = Image::make($img_dir . 'empty.jpg');
+
+        Log::warning('Не найден орегинал изображения, файл - ' . $origin_file_path);
+
+        return $img->response('jpg');
+    }
+
+    $img = Image::make($origin_file_path);
+
+    $img->resize($width, $height);
+
+    $new_file_dir = $img_dir . $width . 'x' . $height . '/';
+
+    if ( ! file_exists($new_file_dir) ) {
+
+        mkdir($new_file_dir);
+    }
+
+    $img->save($new_file_dir . $img_file_name);
+
+    return $img->response('jpg');
+});
+
 /*
 
 Route::group(['middleware' => ['web']], function () {

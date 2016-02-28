@@ -8,3 +8,4 @@ Homestead.json
 access.log
 errors.log
 composer.lock
+/public/img/

@@ -3,6 +3,7 @@
         <h2 itemprop="headline" style="margin: 0 0 10px; display: inline-block" class="title">
             <a itemprop="url" href="{{ $post->url }}">{{ $post->title }}</a>
         </h2>
+        <!-- post_id : {{ $post->id }} -->
         <p itemprop="description">{{ $post->getAnnotation() }}</p>
         <div class="row small" style="color: grey">
             <div class="col-lg-12">

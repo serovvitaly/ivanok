@@ -87,7 +87,10 @@
 
         <div class="row small" style="color: grey; margin-bottom: 20px;">
             <div class="col-lg-12">
-                @include('default.widgets.stats', ['post' => $post])
+                @include('default.widgets.stats', [
+                    'post' => $post,
+                    'authorImage' => 0
+                ])
             </div>
         </div>
 
@@ -194,8 +197,29 @@
     <div class="title head3">Поделитесь с друзьями:</div>
     <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir,twitter" data-counter="" data-size="m"></div>
 
+    <div style="height: 100px"></div>
+
     <hr>
 
+    <div class="head2 title">Интересно почитать</div>
+    <?php
+    $posts_left = \App\Models\PostModel::whereIn('id', [1815, 1831])->get();
+    $posts_right = \App\Models\PostModel::whereIn('id', [1185, 1763])->get();
+    ?>
+    <div class="row">
+        <div class="col-lg-6">
+            @foreach($posts_left as $post)
+                @include('default.post', ['post' => $post])
+            @endforeach
+        </div>
+        <div class="col-lg-6">
+            @foreach($posts_right as $post)
+                @include('default.post', ['post' => $post])
+            @endforeach
+        </div>
+    </div>
+    <hr>
+{{--
     <div style="margin: 30px 0;">
         <a name="comments"></a>
         <div class="head2 title">Комментарии</div>
@@ -205,6 +229,8 @@
             <button class="btn btn-primary btn-xs" onclick="sendComment();">Отправить</button>
             <script>
                 function sendComment(){
+
+                    showLoginAndRegistModal(); return;
 
                     if ( $('#comment-text').val() == '' ) return;
 
@@ -225,6 +251,7 @@
         </div>
 
     </div>
+--}}
 
     <script src="/lib/lightslider/src/js/lightslider.js"></script>
     <script>

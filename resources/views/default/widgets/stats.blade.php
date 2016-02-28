@@ -1,11 +1,15 @@
 <div class="liner">
     <span class="glyphicon glyphicon-eye-open"></span> {{ $post->counter | 0 }}
 </div>
+@if( ! isset($likes) or $likes != 0 )
 <div class="liner">
     <span class="glyphicon glyphicon-heart"></span> {{ $post->likes | 0 }}
 </div>
+@endif
 <div class="liner" title="{{ $post->author->name }}">
+    @if( ! isset($authorImage) or $authorImage != 0 )
     <img src="{{ $post->author->getImageUrl() }}" alt="{{ $post->author->name }}" class="img-circle media-object" style="width: 16px; display: inline-block">
+    @endif
     <strong><a href="/author/{{ $post->author->getLogin() }}"> {{ $post->author->getLogin() }}</a></strong>
 </div>
 {{-- <div class="liner">

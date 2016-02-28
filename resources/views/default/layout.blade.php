@@ -123,8 +123,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                    {{--<li><a href="{{ url('/login') }}">Login</a></li>
+                    <li><a href="{{ url('/register') }}">Register</a></li>--}}
                 @else
                     {{--<li>
                         <a href="/post">Мои посты</a>
@@ -147,6 +147,17 @@
     </div>
 @yield('content')
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6 text-center title">
+            <strong>Laravel is a trademark of Taylor Otwell. Copyright © Taylor Otwell.</strong><br>
+            Design by Jack McDade
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+{{-- @include('default.login-regist-modal') --}}
 <!-- JavaScripts -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="/js/jquery.sticky.js"></script>

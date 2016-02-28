@@ -1,5 +1,9 @@
 @extends('default.layouts.grid-9-3')
 
+@section('content-3')
+    @include('default.widgets.posts-prime', ['post' => \App\Models\PostModel::find(1901)])
+@endsection
+
 @section('content-9')
 <div itemscope itemtype="http://schema.org/BlogPosting">
     @foreach($post->rubrics()->get() as $rubric)
