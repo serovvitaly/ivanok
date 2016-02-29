@@ -11,6 +11,21 @@
 |
 */
 
+Route::get('phpinfo', function(){
+    phpinfo();
+});
+
+Route::get('mem', function(){
+
+    $memcached = new Memcached;
+
+    $memcached->addServer('127.0.0.1', '11211');
+
+    #$memcached->deleteMulti($memcached->getAllKeys());
+
+    return json_encode($memcached->getAllKeys());
+});
+
 Route::get('/redirect/{base64url}', function($base64url){
 
     DB::table('redirect_log')->insert(
@@ -118,6 +133,15 @@ Route::group([
 Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
+
+    /**
+     * Временные URL для статей
+     * @todo Со временем нужно перенести в БД
+     */
+    Route::get('zootopia-movie-review', function () {
+
+        return view('default.post.post-zootopia');
+    });
 
     Route::get('/', function(){
         return view('welcome', [
