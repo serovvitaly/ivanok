@@ -10,7 +10,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Cache;
-use Memcached;
+//use Memcached;
 
 class MemcachedCache
 {
@@ -31,15 +31,15 @@ class MemcachedCache
 
         //Cache::store('memcached')->put($request->getRequestUri(), $response->getContent(), 1);
 
-        $memcached = new Memcached;
+        //$memcached = new Memcached;
 
-        $memcached->addServer('127.0.0.1', '11211');
+        //$memcached->addServer('127.0.0.1', '11211');
 
-        $memcached->setOption(Memcached::OPT_COMPRESSION, false);
+        //$memcached->setOption(Memcached::OPT_COMPRESSION, false);
 
-        $key = 'foo:' . $request->getRequestUri();
+        //$key = 'foo:' . $request->getRequestUri();
         
-        $memcached->set($key, $response->getContent(), 1000);
+        //$memcached->set($key, $response->getContent(), 1000);
 
         return $response;
     }

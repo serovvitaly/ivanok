@@ -14,6 +14,8 @@ class RssHelper
 {
     public static function get($source_url, $count = 10)
     {
+        return [];
+
         $cache_key = 'RSS_URL_' . $source_url;
 
         //Cache::store('memcached')->pull($cache_key);
