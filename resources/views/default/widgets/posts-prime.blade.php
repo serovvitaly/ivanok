@@ -47,12 +47,12 @@
                 thumbItem:9,
                 slideMargin:0,
                 enableDrag: false,
-                currentPagerPosition:'center',
+                currentPagerPosition:'center'/*,
                 onSliderLoad: function(el) {
                     el.lightGallery({
                         selector: '.image-gallery .lslide'
                     });
-                }
+                }*/
             });
         });
     </script>

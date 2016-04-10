@@ -74,7 +74,7 @@ Route::get('/img/{width}x{height}/{img_file_name}', function($width, $height, $i
     return $img->response('jpg');
 });
 
-/*
+
 
 Route::group(['middleware' => ['web']], function () {
 
@@ -102,7 +102,7 @@ Route::group(['middleware' => ['web']], function () {
         ]);
     });
 });
-*/
+
 /**
  * Роутинг Административной части
  */
@@ -192,10 +192,10 @@ Route::group(['middleware' => 'web'], function () {
 
         if (!$auth_user or Gate::denies('update-post', $post)) {
 
-            DB::beginTransaction();
-            $post->counter++;
-            $post->save();
-            DB::commit();
+        //    DB::beginTransaction();
+        //    $post->counter++;
+        //    $post->save();
+        //    DB::commit();
         }
 
         return view('default.post-full', ['post' => $post]);

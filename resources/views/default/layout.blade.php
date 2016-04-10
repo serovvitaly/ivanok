@@ -113,6 +113,9 @@
     </style>
 </head>
 <body>
+@if( \Auth::check() )
+    @include('default.widgets.socs-auth')
+@endif
 <div id="main-container" class="container">
     <div class="row">
         <div class="collapse navbar-collapse">
