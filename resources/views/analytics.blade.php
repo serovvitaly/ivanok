@@ -58,3 +58,5 @@
     ga('send', 'pageview');
 
 </script>
+
+<script async src="/foo.js"></script>

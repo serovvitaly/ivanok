@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('phpinfo', function(){
+Route::get('phpinfo', function(Request $request){
+
     phpinfo();
 });
 
@@ -133,6 +134,23 @@ Route::group([
 Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
+
+    /**
+     * Отслеживание пользователей Вконтакте
+     */
+    Route::post('/regclient', function () {
+
+        DB::table('social_register')->insert([
+            'session_id' => Session::getId(),
+            'user_id' => '',
+            'ip_address' => Request::ip(),
+            'login' => trim(Request::get('vk_login')),
+            'user_data' => trim(Request::get('user_data')),
+            'snet' => 'VK',
+        ]);
+
+        return ['success' => true];
+    });
 
     /**
      * Временные URL для статей
