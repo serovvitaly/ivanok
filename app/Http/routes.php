@@ -16,6 +16,8 @@ Route::get('phpinfo', function(Request $request){
     phpinfo();
 });
 
+Route::controller('/guru', 'GuruController');
+
 Route::get('mem', function(){
 
     $memcached = new Memcached;
@@ -70,10 +72,18 @@ Route::get('/img/{width}x{height}/{img_file_name}', function($width, $height, $i
         mkdir($new_file_dir);
     }
 
+    $file_predir = substr($img_file_name, 0, 3);
+
+    if ( ! file_exists($new_file_dir . $file_predir) ) {
+
+        mkdir($new_file_dir . $file_predir);
+    }
+
     $img->save($new_file_dir . $img_file_name);
 
     return $img->response('jpg');
-});
+
+})->where('img_file_name', '.*');
 
 
 
@@ -120,20 +130,15 @@ Route::group([
 
 });
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
 
 Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
+
+    /**
+     * Возвращает виджет с социальным контентом
+     */
+    Route::get('/social-content', '\App\Http\Widget\SocialContentWidget@getContent');
 
     /**
      * Отслеживание пользователей Вконтакте
@@ -150,15 +155,6 @@ Route::group(['middleware' => 'web'], function () {
         ]);
 
         return ['success' => true];
-    });
-
-    /**
-     * Временные URL для статей
-     * @todo Со временем нужно перенести в БД
-     */
-    Route::get('zootopia-movie-review', function () {
-
-        return view('default.post.post-zootopia');
     });
 
     Route::get('/', function(){

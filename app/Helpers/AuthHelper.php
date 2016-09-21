@@ -23,24 +23,12 @@ class AuthHelper
     {
         $user_key = \Cookie::get(self::USER_KEY_COOKIE_NAME);
 
-        if ($user_key == 'eyJpdiI6Ino4ejhFaDlh') {
-
-            $user_key = null;
-        }
-
         if ( empty($user_key) ) {
 
             $user_key = uniqid(self::UNIQ_ID_PREFIX);
 
-            if ($user_key == 'eyJpdiI6Ino4ejhFaDlh') {
-
-                $user_key = 'uid1';
-            }
-
             \Cookie::queue(self::USER_KEY_COOKIE_NAME, $user_key);
         }
-
-        //$request_url = \Request::url();
 
         return $user_key;
     }

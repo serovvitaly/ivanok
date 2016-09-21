@@ -2,6 +2,7 @@
 
 @section('content-3')
     @include('default.widgets.posts-prime', ['post' => \App\Models\PostModel::find(1901)])
+    @include('default.widgets.social-content')
 @endsection
 
 @section('content-9')

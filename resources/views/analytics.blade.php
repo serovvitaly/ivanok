@@ -28,7 +28,11 @@
                     clickmap:true,
                     trackLinks:true,
                     accurateTrackBounce:true,
-                    webvisor:true
+                    webvisor:true,
+                    params: {
+                        ivk_user_key: '{{ \App\Helpers\AuthHelper::getUserKey() }}',
+                        session: '{{ session_id() }}'
+                    }
                 });
             } catch(e) { }
         });
@@ -59,4 +63,4 @@
 
 </script>
 
-<script async src="/foo.js"></script>
+{{-- <script async src="/foo.js"></script> --}}
