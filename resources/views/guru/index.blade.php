@@ -1,59 +1,39 @@
+<?php
+/**
+ * @var $multi_column_list
+ */
+?>
 @extends('default.layouts.grid-9-3')
 
 @section('left-side')
 Клуб любительниц моды
 @endsection
 
-<?php
-
-$posts_arr = \App\Models\NewPostModel::where('status', '=', 1)->take(15)->get();
-
-$posts_arr_col_1 = [];
-$posts_arr_col_2 = [];
-$posts_arr_col_3 = [];
-foreach ($posts_arr as $index => $post) {
-
-    $index++;
-
-    if (($index % 3) == 0) {
-        $posts_arr_col_3[] = $post;
-    }
-    elseif (($index % 2) == 0) {
-        $posts_arr_col_2[] = $post;
-    }
-    else {
-        $posts_arr_col_1[] = $post;
-    }
-}
-
-
-?>
-
 @section('content')
+    {!!  $multi_column_list !!}
     <div class="row">
+        <div class="col-lg-4"></div>
         <div class="col-lg-4">
-            @foreach($posts_arr_col_1 as $post)
-                @include('guru.post-micro', ['post' => $post])
-            @endforeach
+            <div class="btn btn-primary btn-lg btn-block" onclick="showMore();">Показать ещё</div>
         </div>
-        <div class="col-lg-4">
-            @foreach($posts_arr_col_2 as $post)
-                @include('guru.post-micro', ['post' => $post])
-            @endforeach
-        </div>
-        <div class="col-lg-4">
-            @foreach($posts_arr_col_3 as $post)
-                @include('guru.post-micro', ['post' => $post])
-            @endforeach
-        </div>
-    </div>
-    <div>
-        <div class="btn btn-default">Показать ещё</div>
+        <div class="col-lg-4"></div>
     </div>
     <script>
+        var globalOffset = 0;
         function microPostShowContent(postId, element) {
             //$('.post-content').hide();
             $('#post-micro-'+postId+' .post-content').toggle();
+        }
+        function showMore() {
+            globalOffset += 15;
+            $.get('/guru/', {
+                ajax: 1,
+                offset: globalOffset
+            }, function(data){
+                $.each(data, function(key, columnHtml){
+                    $('#list-column-'+key).append(columnHtml);
+                });
+            });
         }
     </script>
 @endsection
