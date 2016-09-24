@@ -142,6 +142,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/') }}" class="logo">Ivanok.ru</a></li>
+                <li><a href="{{ url('/guru/') }}">Интересные статьи</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
