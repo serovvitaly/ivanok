@@ -1,4 +1,4 @@
-@extends('guru.layout-3-9')
+@extends('default.layouts.grid-9-3')
 
 @section('left-side')
 Клуб любительниц моды
@@ -6,7 +6,7 @@
 
 <?php
 
-$posts_arr = \App\Models\NewPostModel::take(15)->get();
+$posts_arr = \App\Models\NewPostModel::where('status', '=', 1)->take(15)->get();
 
 $posts_arr_col_1 = [];
 $posts_arr_col_2 = [];
@@ -46,6 +46,9 @@ foreach ($posts_arr as $index => $post) {
                 @include('guru.post-micro', ['post' => $post])
             @endforeach
         </div>
+    </div>
+    <div>
+        <div class="btn btn-default">Показать ещё</div>
     </div>
     <script>
         function microPostShowContent(postId, element) {

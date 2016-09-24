@@ -117,6 +117,22 @@
         .box-gallery {
             margin: 20px 0 20px;
         }
+        .micro-post-item{
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 2px;
+            border: 1px solid #d8d8d8;
+            border-bottom-width: 2px;
+        }
+        .micro-post-wrapper{
+            margin: 5px;
+        }
+        .micro-post-title{
+            line-height: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -174,5 +190,21 @@
 @if( ! \Auth::check() )
     @include('analytics')
 @endif
+
+<script src="/lib/lightslider/src/js/lightslider.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.image-prime-gallery').lightSlider({
+            gallery:true,
+            item:1,
+            loop:false,
+            thumbItem:7,
+            slideMargin:0,
+            enableDrag: true,
+            currentPagerPosition:'center'
+        });
+    });
+</script>
+
 </body>
 </html>
